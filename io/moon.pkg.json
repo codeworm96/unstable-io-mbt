@@ -1,7 +1,1 @@
-{
-    "import":[
-        "lijunchen/unstable_io/env",
-        "lijunchen/unstable_io/fs",
-        "lijunchen/unstable_io/rand"
-    ]
-}
+{}

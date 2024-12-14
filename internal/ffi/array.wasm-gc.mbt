@@ -1,4 +1,4 @@
-pub type JSArray
+pub(readonly) type JSArray
 
 pub fn array_len(arr : JSArray) -> Int = "__moonbit_fs_unstable" "array_len"
 

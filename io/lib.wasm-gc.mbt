@@ -30,7 +30,7 @@ pub fn read_char() -> Char? {
 /// # Returns
 /// An optional string containing the line of text. Returns `None` if EOF is reached.
 pub fn read_line_from_stdin() -> String? {
-  let buf = Buffer::new()
+  let buf = @buffer.new()
   while true {
     let c = read_char()
     match c {
@@ -42,7 +42,7 @@ pub fn read_line_from_stdin() -> String? {
       Some(c) => buf.write_char(c)
     }
   }
-  Some(buf.to_string())
+  Some(buf.contents().to_unchecked_string())
 }
 
 /// Prints a single character to standard output.
@@ -69,7 +69,7 @@ pub fn println(obj : Show) -> Unit {
 }
 
 /// Enumeration representing standard streams.
-pub enum StdStream {
+pub(all) enum StdStream {
   Stdin
   Stdout
   Stderr

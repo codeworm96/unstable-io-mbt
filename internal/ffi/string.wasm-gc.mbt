@@ -2,7 +2,7 @@ type StringCreateHandle
 
 type StringReadHandle
 
-pub type ExternString
+pub(readonly) type ExternString
 
 fn begin_create_string() -> StringCreateHandle = "__moonbit_fs_unstable" "begin_create_string"
 
@@ -25,7 +25,7 @@ fn string_read_char(handle : StringReadHandle) -> Int = "__moonbit_fs_unstable" 
 fn finish_read_string(handle : StringReadHandle) = "__moonbit_fs_unstable" "finish_read_string"
 
 pub fn string_from_extern(e : ExternString) -> String {
-  let buf = Buffer::new()
+  let buf = @buffer.new()
   let handle = begin_read_string(e)
   while true {
     let ch = string_read_char(handle)
@@ -36,5 +36,5 @@ pub fn string_from_extern(e : ExternString) -> String {
     }
   }
   finish_read_string(handle)
-  buf.to_string()
+  buf.contents().to_unchecked_string()
 }
