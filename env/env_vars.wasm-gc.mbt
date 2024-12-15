@@ -44,7 +44,8 @@ pub fn get_args() -> Array[String] {
   let arr = args_get()
   let len = @ffi.array_len(arr)
   let res = []
-  for i = 0; i < len; i = i + 1 {
+  let drop_num = 2
+  for i = drop_num; i < len; i = i + 1 {
     let val = arr[i]
     if @ffi.jsvalue_is_string(val).not() {
       abort("Expected all strings in array")
